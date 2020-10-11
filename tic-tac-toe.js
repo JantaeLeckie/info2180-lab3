@@ -27,7 +27,15 @@ function boxes(n){
     var myXO = true; 
     for(let x = 0; x < n.length; x++){
         n[x].classList.add('square');
-        
+        n[x].addEventListener('click', function(){
+            if (myXO === true){
+                n[x].innerHTML = 'X';
+                myXO = false;
+            }else{
+                n[x].innerHTML = 'O';
+                myXO = true;
+            }
+        })
     }
 }
 
