@@ -27,13 +27,21 @@ function boxes(n){
     var myXO = true; 
     for(let x = 0; x < n.length; x++){
         n[x].classList.add('square');
+        n[x].onmouseover = function(){
+            n[x].classList.toggle("hover", true);
+        }
+        n[x].onmouseout = function(){
+            n[x].classList.toggle("hover", false);
+        }
         n[x].addEventListener('click', function(){
-            if (myXO === true){
-                n[x].innerHTML = 'X';
-                myXO = false;
-            }else{
-                n[x].innerHTML = 'O';
-                myXO = true;
+            if (n[x].innerHTML === ""){
+                if (myXO === true){
+                    n[x].innerHTML = 'X';
+                    myXO = false;
+                }else{
+                    n[x].innerHTML = 'O';
+                    myXO = true;
+                }
             }
         })
     }
