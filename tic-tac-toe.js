@@ -19,11 +19,19 @@ var originalstat = ("Move your mouse over a square and click to play an X or an 
 var mystarter = function(){
     // var b = document.querySelectorAll("#board div");
     let b = document.getElementById("board").children;
+    console.log(b);
     this.boxes(b);
 }
 
 window.onload = mystarter;
 function boxes(n){
+    document.getElementsByClassName("btn")[0].addEventListener('click', function(){
+        for(let x = 0; x < n.length; x++){
+            n[x].innerHTML = "";
+            let stat = document.getElementById("status");
+            stat.innerHTML = originalstat;
+        }
+    })
     var myXO = true; 
     for(let x = 0; x < n.length; x++){
         n[x].classList.add('square');
@@ -34,16 +42,68 @@ function boxes(n){
             n[x].classList.toggle("hover", false);
         }
         n[x].addEventListener('click', function(){
-            if (n[x].innerHTML === ""){
-                if (myXO === true){
-                    n[x].innerHTML = 'X';
-                    myXO = false;
-                }else{
-                    n[x].innerHTML = 'O';
-                    myXO = true;
-                }
+            if (myXO === true){
+                n[x].innerHTML = 'X';
+                myXO = false;
+                winner(n);
+            }else{
+                n[x].innerHTML = 'O';
+                myXO = true;
+                winner(n);
             }
         })
+        
+    }
+}
+
+function winner(n){
+    let m = "";
+    let win = "";
+    let stat = document.getElementById("status");
+    stat.className = "you-won";
+    let lose = ("No one won");
+    if (n[0].innerHTML !== "" && n[0].innerHTML === n[1].innerHTML && n[1].innerHTML === n[2].innerHTML){
+        m = n[0].innerHTML;
+        win = ("Congratulation! " + m + " is the winner")
+        stat.innerHTML = win;
+    }
+    else if (n[0].innerHTML !== "" && n[0].innerHTML === n[3].innerHTML && n[3].innerHTML === n[6].innerHTML){
+        m = n[0].innerHTML;
+        win = ("Congratulation! " + m + " is the winner");
+        stat.innerHTML = win;
+    }
+    else if (n[0].innerHTML !== "" && n[0].innerHTML === n[4].innerHTML  && n[4].innerHTML === n[8].innerHTML){
+        m = n[0].innerHTML;
+        win = ("Congratulation! " + m + " is the winner");
+        stat.innerHTML = win;
+    }
+    else if (n[1].innerHTML !== "" && n[1].innerHTML === n[4].innerHTML && n[4].innerHTML=== n[7].innerHTML){
+        m = n[1].innerHTML;
+        win = ("Congratulation! " + m + " is the winner");
+        stat.innerHTML = win;
+    }
+    else if (n[2].innerHTML !== "" && n[2].innerHTML === n[5].innerHTML && n[5].innerHTML === n[8].innerHTML){
+        m = n[2].innerHTML;
+        win = ("Congratulation! " + m + " is the winner");
+        stat.innerHTML = win;
+    }
+    else if (n[2].innerHTML !== "" && n[2].innerHTML === n[4].innerHTML && n[4].innerHTML=== n[6].innerHTML){
+        m = n[2].innerHTML;
+        win = ("Congratulation! " + m + " is the winner");
+        stat.innerHTML = win;
+    }
+    else if (n[3].innerHTML !== "" && n[3].innerHTML === n[4].innerHTML && n[4].innerHTML === n[5].innerHTML){
+        m = n[3].innerHTML;
+        win = ("Congratulation! " + m + " is the winner")
+        stat.innerHTML = win;
+    }
+    else if (n[6].innerHTML !== "" && n[6].innerHTML === n[7].innerHTML && n[7].innerHTML === n[8].innerHTML){
+        m = n[6].innerHTML;
+        win = ("Congratulation! " + m + " is the winner")
+        stat.innerHTML = win;
+    }
+    else{
+        stat.innerHTML = lose;
     }
 }
 
