@@ -42,14 +42,16 @@ function boxes(n){
             n[x].classList.toggle("hover", false);
         }
         n[x].addEventListener('click', function(){
-            if (myXO === true){
-                n[x].innerHTML = 'X';
-                myXO = false;
-                winner(n);
-            }else{
-                n[x].innerHTML = 'O';
-                myXO = true;
-                winner(n);
+            if (n[x].innerHTML === ""){
+                if (myXO === true){
+                    n[x].innerHTML = 'X';
+                    myXO = false;
+                    winner(n);
+                }else{
+                    n[x].innerHTML = 'O';
+                    myXO = true;
+                    winner(n);
+                }
             }
         })
         
