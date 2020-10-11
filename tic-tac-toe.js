@@ -25,13 +25,6 @@ var mystarter = function(){
 
 window.onload = mystarter;
 function boxes(n){
-    document.getElementsByClassName("btn")[0].addEventListener('click', function(){
-        for(let x = 0; x < n.length; x++){
-            n[x].innerHTML = "";
-            let stat = document.getElementById("status");
-            stat.innerHTML = originalstat;
-        }
-    })
     var myXO = true; 
     for(let x = 0; x < n.length; x++){
         n[x].classList.add('square');
